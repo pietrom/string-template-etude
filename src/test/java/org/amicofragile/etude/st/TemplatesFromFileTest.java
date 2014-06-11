@@ -14,4 +14,12 @@ public class TemplatesFromFileTest {
 		st.add("name", "World");
 		assertEquals("Hello, World!", st.render());
 	}
+	
+	@Test
+	public void customDelimiters() throws Exception {
+		final STGroup group = new STGroupFile(getClass().getResource("/hello-cd.stg"), "UTF-8", '{', '}');
+		final ST st = group.getInstanceOf("hello");
+		st.add("name", "World");
+		assertEquals("Hello, World!", st.render());
+	}
 }
