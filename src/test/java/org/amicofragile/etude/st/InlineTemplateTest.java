@@ -1,11 +1,13 @@
 package org.amicofragile.etude.st;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
+
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STGroup;
 import org.stringtemplate.v4.STGroupString;
+import org.stringtemplate.v4.StringRenderer;
 
 public class InlineTemplateTest {
 	@Test
@@ -32,5 +34,18 @@ public class InlineTemplateTest {
 		final ST uc = group.getInstanceOf("uc");
 		uc.add("name", "World");
 		assertEquals("HELLO, World!", uc.render());
+	}
+	
+	@Test
+	public void useStringRenderer() throws Exception {
+		final String groupString = 
+				"pul(name) ::= <<\n" + 
+						"<name>;<name; format=\"upper\">;<name; format=\"lower\">\n" +
+						">>\n";
+		final STGroup group = new STGroupString(groupString);
+		group.registerRenderer(String.class, new StringRenderer());
+		final ST st = group.getInstanceOf("pul");
+		st.add("name", "World");
+		assertEquals("World;WORLD;world", st.render());
 	}
 }
