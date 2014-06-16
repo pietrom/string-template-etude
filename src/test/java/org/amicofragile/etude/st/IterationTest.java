@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroup;
+import org.stringtemplate.v4.STGroupFile;
 
 public class IterationTest {
 	@Test
@@ -27,5 +29,18 @@ public class IterationTest {
 		persons.add(new Person("Qua", "Duck"));
 		st.add("persons", persons);
 		assertEquals("Hello, Qui, Quo, Qua!", st.render());
+	}
+	
+	@Test
+	public void iterateAndApplyNamedTemplate() throws Exception {
+		final STGroup group = new STGroupFile(getClass().getResource("/iteration.stg"), "UTF-8", '<', '>');
+		final ST st = group.getInstanceOf("hello");
+		
+		final List<Person> persons = new LinkedList<Person>();
+		persons.add(new Person("Qui", "Duck"));
+		persons.add(new Person("Quo", "Duck"));
+		persons.add(new Person("Qua", "Duck"));
+		st.add("persons", persons);
+		assertEquals("Hello, Qui Duck, Quo Duck, Qua Duck!", st.render());
 	}
 }

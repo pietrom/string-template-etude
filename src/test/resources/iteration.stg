@@ -1,0 +1,3 @@
+hello(persons) ::= "Hello, <persons:{p |<single(p)>}; separator=\", \">!"
+
+single(p) ::= "<p.firstname> <p.surname>"
