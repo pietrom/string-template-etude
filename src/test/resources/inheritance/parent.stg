@@ -1,1 +1,3 @@
-hello(name) ::= "Hello, <name>!"
+hello(name) ::= "Hello, <asName(name)>!"
+
+asName(name) ::= "<name>"
