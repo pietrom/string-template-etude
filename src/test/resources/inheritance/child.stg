@@ -1,3 +1,5 @@
 import "parent.stg"
 
 drop(table) ::= "drop table <table>;"
+
+asName(name) ::= "[<name>]"

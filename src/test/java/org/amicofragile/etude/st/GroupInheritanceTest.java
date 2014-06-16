@@ -15,4 +15,12 @@ public class GroupInheritanceTest {
 		st.add("name", "World");
 		assertEquals("Hello, World!", st.render());
 	}
+	
+	@Test
+	public void templateMethod() throws Exception {
+		final STGroup group = new STGroupFile(getClass().getResource("/inheritance/child.stg"), "UTF-8", '<', '>');
+		final ST st = group.getInstanceOf("hello2");
+		st.add("name", "World");
+		assertEquals("Hello, [World]!", st.render());
+	}
 }
