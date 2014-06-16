@@ -16,4 +16,8 @@ public class Person {
 	public String getSurname() {
 		return surname;
 	}
+	
+	public Boolean getNameIsPietro() {
+		return "Pietro".equals(firstname);
+	}
 }
