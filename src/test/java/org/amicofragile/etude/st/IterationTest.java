@@ -33,7 +33,7 @@ public class IterationTest {
 	
 	@Test
 	public void iterateAndApplyNamedTemplate() throws Exception {
-		final STGroup group = StringTemplateTestHelper.loadGroupFromResource("/iteration.stg");
+		final STGroup group = StringTemplateTestHelper.loadGroupFromResource("/iteration.stg", '$', '$');
 		final ST st = group.getInstanceOf("hello");
 		
 		final List<Person> persons = new LinkedList<Person>();

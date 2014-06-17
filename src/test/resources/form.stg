@@ -1,0 +1,9 @@
+select(s) ::= <<
+	<select name="{s.name}">
+		{s.options:option(); separator="\n"}
+	</select>
+>>
+
+option(o) ::= <<
+	<option value="{o.value}">{o.label}</option>
+>>
